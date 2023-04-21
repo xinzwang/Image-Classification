@@ -1,0 +1,55 @@
+name: resnet20_cifar100_32
+model: ResNet20
+gpu_ids: [0]
+
+in_chans: 3
+img_size: [32, 32]
+class_num: 100
+
+
+### datasets
+datasets:
+  train:
+    name: CIFAR100
+    dataroot: ../../datasets/CLSDatasets/CIFAR100
+    
+    is_pretrain: false  # whether to process the preprocess
+
+    workers_per_gpu: 0
+    imgs_per_gpu: 256
+  
+  val:
+    name: CIFAR100
+    dataroot: ../../datasets/CLSDatasets/CIFAR100
+
+    imgs_per_gpu: 32
+
+
+### training
+train:
+  manual_seed: 1234
+
+  optimizer:
+    type: SGD
+    lr: !!float 1e-1
+    momentum: 0.9
+    weight_decay: !!float 1e-4
+
+  # optimizer:
+  #   type: Adam
+  #   lr: !!float 1e-3
+
+  niter: 64000
+
+  scheduler:
+    type: MultiStepRestartLR
+    milestones: [32000, 48000]
+    gamma: 0.1
+
+  val_freq: !!float 5e3
+
+
+### logger
+logger:
+  print_freq: 200
+  save_checkpoint_freq: !!float 5e3
