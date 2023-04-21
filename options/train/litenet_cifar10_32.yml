@@ -1,0 +1,43 @@
+name: litenet_cifari10_32
+model: LiteNet
+gpu_ids: [0]
+
+in_chans: 3
+class_num: 10
+img_size: [32, 32]
+
+
+### datasets
+datasets:
+  train:
+    name: CIFAR10
+    dataroot: ../../datasets/CLSDatasets/CIFAR10
+    
+    is_pretrain: False
+    img_size: [32, 32]
+
+    workers_per_gpu: 0
+    imgs_per_gpu: 32
+  
+  val:
+    name: CIFAR10
+    dataroot: ../../datasets/CLSDatasets/CIFAR10
+
+    imgs_per_gpu: 32
+
+### training
+train:
+  manual_seed: 1234
+
+  nepoch: 30
+
+
+scheduler:
+  type: MultiStepRestartLR
+  milestones: [20000, 40000, 50000]
+  gamma: 0.5
+
+### logger
+logger:
+  print_freq: 200
+  save_checkpoint_freq: 1

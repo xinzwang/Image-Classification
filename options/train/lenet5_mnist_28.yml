@@ -1,0 +1,24 @@
+name: lenet_28
+model: LeNet5
+gpu_ids: [0]
+class_num: 10
+
+img_size: [28, 28]
+
+datasets:
+  train:
+    name: MINIST
+    mode: ClassificationDataset
+    data_type: torchvision
+
+train:
+  manual_seed: 1234
+
+scheduler:
+  type: MultiStepRestartLR
+  milestones: [20000, 40000, 50000]
+  gamma: 0.5
+
+logger:
+  print_freq: 200
+  save_checkpoint_freq: 1
