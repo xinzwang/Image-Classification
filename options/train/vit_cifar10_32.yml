@@ -1,0 +1,63 @@
+name: vit_cifar10
+model: ViT
+gpu_ids: [0]
+
+in_chans: 3
+img_size: [224, 224]
+class_num: 10
+
+patch_size: 32
+dim: 128
+depth: 6
+heads: 16
+mlp_dim: 2048
+dropout: 0.1
+emb_dropout: 0.1
+
+
+### datasets
+datasets:
+  train:
+    name: CIFAR10
+    dataroot: ../../datasets/CLSDatasets/CIFAR10
+    
+    is_pretrain: true  # whether to process the preprocess
+    src_img_size: [32, 32, 3]
+    fake_img_size: [256, 256, 3]
+
+    workers_per_gpu: 0
+    imgs_per_gpu: 256
+  
+  val:
+    name: CIFAR10
+    dataroot: ../../datasets/CLSDatasets/CIFAR10
+
+    is_pretrain: true  # whether to process the preprocess
+    src_img_size: [32, 32, 3]
+    fake_img_size: [224, 224, 3]
+
+    imgs_per_gpu: 32
+
+
+### training
+train:
+  manual_seed: 1234
+
+  optimizer:
+    type: Adam
+    lr: !!float 1e-3
+
+  niter: 64000
+
+  scheduler:
+    type: MultiStepRestartLR
+    milestones: [32000, 48000]
+    gamma: 0.1
+
+  val_freq: !!float 5e3
+
+
+### logger
+logger:
+  print_freq: 200
+  save_checkpoint_freq: !!float 5e3
