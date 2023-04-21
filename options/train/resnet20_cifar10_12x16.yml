@@ -1,9 +1,9 @@
-name: resnet20_cifar10_16x12
+name: resnet20_cifar10_12x16
 model: ResNet20
 gpu_ids: [0]
 
 in_chans: 1
-img_size: [16, 12]
+img_size: [16, 16]
 class_num: 10
 
 
@@ -15,7 +15,7 @@ datasets:
     
     is_pretrain: true  # whether to process the preprocess
     src_img_size: [32, 32, 3]
-    fake_img_size: [16, 12, 1]
+    fake_img_size: [12, 16, 1]
 
     workers_per_gpu: 0
     imgs_per_gpu: 256
@@ -26,7 +26,7 @@ datasets:
 
     is_pretrain: true  # whether to process the preprocess
     src_img_size: [32, 32, 3]
-    fake_img_size: [16, 12, 1]
+    fake_img_size: [12, 16, 1]
 
     imgs_per_gpu: 32
 
