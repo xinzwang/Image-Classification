@@ -4,10 +4,10 @@ Image Classification including MNIST, CIFAR-10, CIFAR-100 datasets.
 
 |Dataset|Model|Input|Epoch|Iteration|Acc|
 |:---:|:---:|:---:|:---:|:---:|:---:|
-|MNIST|LeNet5|28x28|30|-|0.99130|
-|MNIST|LeNet5|16x12|-|64000|0.98340|
-|MNIST|ResNet20|28x28|-|64000|0.99420|
-|MNIST|ResNet20|16x12|-|64000|0.99370|
+|MNIST|LeNet5|28x28|30|-|0.9913|
+|MNIST|LeNet5|16x12|-|64000|0.9834|
+|MNIST|ResNet20|28x28|-|64000|0.9942|
+|MNIST|ResNet20|16x12|-|64000|0.9937|
 
 |Dataset|Model|Input|Epoch|Iteration|Acc|
 |:---:|:---:|:---:|:---:|:---:|:---:|
