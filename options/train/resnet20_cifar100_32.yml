@@ -1,5 +1,5 @@
-name: resnet20_cifar100_32
-model: ResNet20
+name: resnet56_cifar100_32
+model: ResNet56
 gpu_ids: [0]
 
 in_chans: 3

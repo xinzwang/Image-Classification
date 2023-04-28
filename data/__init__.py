@@ -120,7 +120,23 @@ def create_dataset(dataset_opt):
             transforms.ToTensor()
         ])
     else:
-        transform = transforms.Compose([transforms.ToTensor()])
+        # transform = transforms.Compose([transforms.ToTensor()])
+        train_transform = transforms.Compose([
+            #transforms.ToPILImage(),
+            transforms.RandomCrop(32, padding=4),
+            transforms.RandomHorizontalFlip(),
+            transforms.RandomRotation(15),
+            transforms.ToTensor(),
+            transforms.Normalize((0.5070751592371323, 0.48654887331495095, 0.4409178433670343), (0.2673342858792401, 0.2564384629170883, 0.27615047132568404))
+        ])
+        test_transform = transforms.Compose([
+            transforms.ToTensor(),
+            transforms.Normalize((0.5070751592371323, 0.48654887331495095, 0.4409178433670343), (0.2673342858792401, 0.2564384629170883, 0.27615047132568404))
+        ])
+        if is_train:
+            transform = train_transform
+        else:
+            transform = test_transform
 
     # get dataset
     if name == "MNIST":

@@ -117,7 +117,7 @@ def main():
     model.to(device)
 
     # create loss
-    loss_fn = nn.CrossEntropyLoss()
+    loss_fn = nn.CrossEntropyLoss().to(device)
 
     # optimizer
     optim_opt = opt["train"]["optimizer"]
@@ -231,7 +231,7 @@ def validate(val_dataset, val_loader, model, device):
         pred = y_pred.detach().cpu().max(1)[1]  # argmax
         total_correct += pred.eq(label.view_as(pred)).sum()
         total_label += len(label)
-    acc = total_correct / len(val_dataset)
+    acc = total_correct / total_label
     model.train()
     return acc
 

@@ -1,4 +1,4 @@
-name: resnet20_cifar10_32
+name: resnet20_cifar10_32_Adam
 model: ResNet20
 gpu_ids: [0]
 
@@ -16,7 +16,7 @@ datasets:
     is_pretrain: false  # whether to process the preprocess
     img_size: [32, 32]
 
-    workers_per_gpu: 0
+    workers_per_gpu: 4
     imgs_per_gpu: 256
   
   val:
@@ -30,15 +30,15 @@ datasets:
 train:
   manual_seed: 1234
 
-  optimizer:
-    type: SGD
-    lr: !!float 1e-1
-    momentum: 0.9
-    weight_decay: !!float 1e-4
-
   # optimizer:
-  #   type: Adam
-  #   lr: !!float 1e-3
+  #   type: SGD
+  #   lr: !!float 1e-1
+  #   momentum: 0.9
+  #   weight_decay: !!float 1e-4
+
+  optimizer:
+    type: Adam
+    lr: !!float 1e-3
 
   niter: 64000
 

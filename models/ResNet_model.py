@@ -154,3 +154,8 @@ from utils.registry import MODEL_REGISTRY
 class ResNet20(ResNet):
     def __init__(self, opt):
         super(ResNet20, self).__init__(BasicBlock, [3, 3, 3], num_classes=opt["class_num"], in_chans=opt["in_chans"])
+
+@MODEL_REGISTRY.register()
+class ResNet56(ResNet):
+    def __init__(self, opt):
+        super(ResNet56, self).__init__(BasicBlock, [9, 9, 9], num_classes=opt["class_num"], in_chans=opt["in_chans"])
